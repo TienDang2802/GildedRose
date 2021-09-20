@@ -18,7 +18,12 @@ final class GildedRose
 
     public function updateQuality(): void
     {
+        /** @var Item $item */
         foreach ($this->items as $item) {
+            if (! $item instanceof Item) {
+                continue;
+            }
+
             if ($item->getName() != 'Aged Brie' and $item->getName() != 'Backstage passes to a TAFKAL80ETC concert') {
                 if ($item->getQuality() > 0) {
                     if ($item->getName() != 'Sulfuras, Hand of Ragnaros') {
@@ -29,12 +34,12 @@ final class GildedRose
                 if ($item->getQuality() < 50) {
                     $item->increaseQuality();
                     if ($item->getName() == 'Backstage passes to a TAFKAL80ETC concert') {
-                        if ($item->sell_in < 11) {
+                        if ($item->getSellIn() < 11) {
                             if ($item->getQuality() < 50) {
                                 $item->increaseQuality();
                             }
                         }
-                        if ($item->sell_in < 6) {
+                        if ($item->getSellIn() < 6) {
                             if ($item->getQuality() < 50) {
                                 $item->increaseQuality();
                             }
@@ -44,7 +49,7 @@ final class GildedRose
             }
 
             if ($item->getName() != 'Sulfuras, Hand of Ragnaros') {
-                $item->sell_in = $item->sell_in - 1;
+                $item->decreaseSellIn();
             }
 
             if ($item->getSellIn() < 0) {

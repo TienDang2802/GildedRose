@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace GildedRose\Model;
 
-final class Item
+final class Item implements \Stringable
 {
     const NAME_AGED_BRIE = 'Aged Brie';
 
