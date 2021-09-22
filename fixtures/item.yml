@@ -1,0 +1,51 @@
+GildedRose\Model\Item:
+    itemDexterity:
+        __construct:
+            name: '+5 Dexterity Vest'
+            sellIn: 10
+            quality: 20
+    itemAged:
+        __construct:
+            name: 'Aged Brie'
+            sellIn: 2
+            quality: 0
+    itemElixir:
+        __construct:
+            name: 'Elixir of the Mongoose'
+            sellIn: 5
+            quality: 7
+    itemSulfuras_1:
+        __construct:
+            name: 'Sulfuras, Hand of Ragnaros'
+            sellIn: 0
+            quality: 80
+    itemSulfuras_2:
+        __construct:
+            name: 'Sulfuras, Hand of Ragnaros'
+            sellIn: -1
+            quality: 80
+    itemBackstage_1:
+        __construct:
+            name: 'Backstage passes to a TAFKAL80ETC concert'
+            sellIn: 15
+            quality: 20
+    itemBackstage_2:
+        __construct:
+            name: 'Backstage passes to a TAFKAL80ETC concert'
+            sellIn: 10
+            quality: 49
+    itemBackstage_3:
+        __construct:
+            name: 'Backstage passes to a TAFKAL80ETC concert'
+            sellIn: 5
+            quality: 49
+    itemConjured:
+        __construct:
+            name: 'Conjured Mana Cake'
+            sellIn: 3
+            quality: 6
+    item_{1..10}:
+        __construct:
+            name: '<name()>'
+            sellIn: '<randomDigit()>'
+            quality: '<randomDigit()>'

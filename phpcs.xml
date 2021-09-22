@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<ruleset name="GildedRose_CodeSniffer">
+
+    <description>A custom coding standard for GildedRose</description>
+
+    <file>./src/Model</file>
+    <file>./public/index.php</file>
+
+    <exclude-pattern>*/tests/*</exclude-pattern>
+
+    <rule ref="Generic.Commenting.DocComment"/>
+    <rule ref="PSR12"/>
+</ruleset>

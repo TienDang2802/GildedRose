@@ -6,24 +6,18 @@ namespace GildedRose\Model;
 
 final class Item implements \Stringable
 {
-    const NAME_AGED_BRIE = 'Aged Brie';
+    public const NAME_AGED_BRIE = 'Aged Brie';
 
-    const NAME_BACKSTAGE = 'Backstage passes to a TAFKAL80ETC concert';
+    public const NAME_BACKSTAGE = 'Backstage passes to a TAFKAL80ETC concert';
 
-    const NAME_SULFURAS = 'Sulfuras, Hand of Ragnaros';
-
-    private string $name;
-
-    private int $sellIn;
-
-    private int $quality;
+    public const NAME_SULFURAS = 'Sulfuras, Hand of Ragnaros';
 
     /**
      * Constructor property promotion
      *
      * @link https://www.php.net/releases/8.0/en.php#constructor-property-promotion
      */
-    public function __construct(string $name, int $sellIn, int $quality)
+    public function __construct(private string $name, private int $sellIn, private int $quality)
     {
     }
 

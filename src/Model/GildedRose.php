@@ -20,7 +20,7 @@ final class GildedRose
     {
         /** @var Item $item */
         foreach ($this->items as $item) {
-            if (! $item instanceof Item) {
+            if (!$item instanceof Item) {
                 continue;
             }
 
