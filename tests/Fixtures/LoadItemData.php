@@ -16,8 +16,8 @@ class LoadItemData
         $this->loader = new NativeLoader();
     }
 
-    public function loadData($filePath): ObjectSet
+    public function loadData($filePath): array
     {
-        return $this->loader->loadFile($filePath);
+        return $this->loader->loadFile($filePath)->getObjects();
     }
 }
