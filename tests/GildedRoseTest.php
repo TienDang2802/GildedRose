@@ -6,9 +6,10 @@ namespace Tests;
 
 use GildedRose\Model\GildedRose;
 use GildedRose\Model\Item;
-use PHPUnit\Framework\TestCase;
+use GildedRose\Model\ItemVariants\AgedItem;
+use GildedRose\Model\ItemVariants\BackstageItem;
+use GildedRose\Model\ItemVariants\SulfurasItem;
 use Tests\Fixtures\LoadItemData;
-use Tests\Traits\WithFaker;
 
 class GildedRoseTest extends AbstractTestCase
 {
@@ -38,7 +39,7 @@ class GildedRoseTest extends AbstractTestCase
         $this->assertEquals(2, count($gildedRose->getItems()));
     }
 
-    public function testItemRandomNameAndHasQualityAndSellIn(): void
+    public function testCommonItemAndHasQualityAndSellIn(): void
     {
         $itemName = $this->faker->name;
         $item = new Item($itemName, 10, 20);
@@ -53,7 +54,7 @@ class GildedRoseTest extends AbstractTestCase
         $this->assertEquals(19, $actualItem->getQuality());
     }
 
-    public function testItemRandomNameAndHasQualityAndNotSellIn(): void
+    public function testCommonItemAndHasQualityAndNotSellIn(): void
     {
         $itemName = $this->faker->name;
         $item = new Item($itemName, -1, 30);
@@ -68,7 +69,7 @@ class GildedRoseTest extends AbstractTestCase
         $this->assertEquals(28, $actualItem->getQuality());
     }
 
-    public function testItemRandomNameAndHasEmptyQualityAndNotSellIn(): void
+    public function testCommonItemAndHasEmptyQualityAndNotSellIn(): void
     {
         $itemName = $this->faker->name;
         $item = new Item($itemName, -1, 1);
@@ -85,98 +86,98 @@ class GildedRoseTest extends AbstractTestCase
 
     public function testItemAgedBrieAndBelowMaxQualityAndHaveSellIn(): void
     {
-        $item = new Item(Item::NAME_AGED_BRIE, 5, 40);
+        $item = new Item(AgedItem::NAME, 5, 40);
 
         $gildedRose = new GildedRose([$item]);
         $gildedRose->updateQuality();
 
         $actualItem = $gildedRose->getItems()[0];
 
-        $this->assertEquals(Item::NAME_AGED_BRIE, $actualItem->getName());
+        $this->assertEquals(AgedItem::NAME, $actualItem->getName());
         $this->assertEquals(4, $actualItem->getSellIn());
         $this->assertEquals(41, $actualItem->getQuality());
     }
 
     public function testItemAgedBrieAndBelowMaxQualityAndNotSellIn(): void
     {
-        $item = new Item(Item::NAME_AGED_BRIE, -1, 40);
+        $item = new Item(AgedItem::NAME, -1, 40);
 
         $gildedRose = new GildedRose([$item]);
         $gildedRose->updateQuality();
 
         $actualItem = $gildedRose->getItems()[0];
 
-        $this->assertEquals(Item::NAME_AGED_BRIE, $actualItem->getName());
+        $this->assertEquals(AgedItem::NAME, $actualItem->getName());
         $this->assertEquals(-2, $actualItem->getSellIn());
         $this->assertEquals(42, $actualItem->getQuality());
     }
 
     public function testItemAgedBrieAndOverMaxQualityAndHaveSellIn(): void
     {
-        $item = new Item(Item::NAME_AGED_BRIE, 5, 50);
+        $item = new Item(AgedItem::NAME, 5, 50);
 
         $gildedRose = new GildedRose([$item]);
         $gildedRose->updateQuality();
 
         $actualItem = $gildedRose->getItems()[0];
 
-        $this->assertEquals(Item::NAME_AGED_BRIE, $actualItem->getName());
+        $this->assertEquals(AgedItem::NAME, $actualItem->getName());
         $this->assertEquals(4, $actualItem->getSellIn());
         $this->assertEquals(50, $actualItem->getQuality());
     }
 
     public function testItemAgedBrieAndOverMaxQualityAndNotSellIn(): void
     {
-        $item = new Item(Item::NAME_AGED_BRIE, -1, 50);
+        $item = new Item(AgedItem::NAME, -1, 50);
 
         $gildedRose = new GildedRose([$item]);
         $gildedRose->updateQuality();
 
         $actualItem = $gildedRose->getItems()[0];
 
-        $this->assertEquals(Item::NAME_AGED_BRIE, $actualItem->getName());
+        $this->assertEquals(AgedItem::NAME, $actualItem->getName());
         $this->assertEquals(-2, $actualItem->getSellIn());
         $this->assertEquals(50, $actualItem->getQuality());
     }
 
     public function testItemBackstageAndHasQualityAndBelowMinSellIn(): void
     {
-        $item = new Item(Item::NAME_BACKSTAGE, 5, 20);
+        $item = new Item(BackstageItem::NAME, 5, 20);
 
         $gildedRose = new GildedRose([$item]);
         $gildedRose->updateQuality();
 
         $actualItem = $gildedRose->getItems()[0];
 
-        $this->assertEquals(Item::NAME_BACKSTAGE, $actualItem->getName());
+        $this->assertEquals(BackstageItem::NAME, $actualItem->getName());
         $this->assertEquals(4, $actualItem->getSellIn());
         $this->assertEquals(23, $actualItem->getQuality());
     }
 
     public function testItemBackstageAndHasQualityAndInRangeSellIn(): void
     {
-        $item = new Item(Item::NAME_BACKSTAGE, 8, 20);
+        $item = new Item(BackstageItem::NAME, 8, 20);
 
         $gildedRose = new GildedRose([$item]);
         $gildedRose->updateQuality();
 
         $actualItem = $gildedRose->getItems()[0];
 
-        $this->assertEquals(Item::NAME_BACKSTAGE, $actualItem->getName());
+        $this->assertEquals(BackstageItem::NAME, $actualItem->getName());
         $this->assertEquals(7, $actualItem->getSellIn());
         $this->assertEquals(22, $actualItem->getQuality());
     }
 
     public function testItemBackstageAndHasQualityAndOverMaxSellIn(): void
     {
-        $item = new Item(Item::NAME_BACKSTAGE, 11, 20);
+        $item = new Item(BackstageItem::NAME, 11, 20);
 
         $gildedRose = new GildedRose([$item]);
         $gildedRose->updateQuality();
 
         $actualItem = $gildedRose->getItems()[0];
 
-        $this->assertEquals(Item::NAME_BACKSTAGE, $actualItem->getName());
+        $this->assertEquals(BackstageItem::NAME, $actualItem->getName());
         $this->assertEquals(10, $actualItem->getSellIn());
         $this->assertEquals(21, $actualItem->getQuality());
     }
@@ -185,57 +186,113 @@ class GildedRoseTest extends AbstractTestCase
     {
         $sellIn = $this->faker->randomDigitNotNull;
 
-        $item = new Item(Item::NAME_BACKSTAGE, $sellIn, 50);
+        $item = new Item(BackstageItem::NAME, $sellIn, 50);
 
         $gildedRose = new GildedRose([$item]);
         $gildedRose->updateQuality();
 
         $actualItem = $gildedRose->getItems()[0];
 
-        $this->assertEquals(Item::NAME_BACKSTAGE, $actualItem->getName());
+        $this->assertEquals(BackstageItem::NAME, $actualItem->getName());
         $this->assertEquals($sellIn - 1, $actualItem->getSellIn());
         $this->assertEquals(50, $actualItem->getQuality());
     }
 
     public function testItemBackstageAndOverQualityAndNotSellIn(): void
     {
-        $item = new Item(Item::NAME_BACKSTAGE, 0, 50);
+        $item = new Item(BackstageItem::NAME, 0, 50);
 
         $gildedRose = new GildedRose([$item]);
         $gildedRose->updateQuality();
 
         $actualItem = $gildedRose->getItems()[0];
 
-        $this->assertEquals(Item::NAME_BACKSTAGE, $actualItem->getName());
+        $this->assertEquals(BackstageItem::NAME, $actualItem->getName());
         $this->assertEquals(-1, $actualItem->getSellIn());
         $this->assertEquals(0, $actualItem->getQuality());
     }
 
     public function testItemSulfurasAndHasQualityAndSellIn(): void
     {
-        $item = new Item(Item::NAME_SULFURAS, 10, 20);
+        $item = new Item(SulfurasItem::NAME, 10, 20);
 
         $gildedRose = new GildedRose([$item]);
         $gildedRose->updateQuality();
 
         $actualItem = $gildedRose->getItems()[0];
 
-        $this->assertEquals(Item::NAME_SULFURAS, $actualItem->getName());
+        $this->assertEquals(SulfurasItem::NAME, $actualItem->getName());
         $this->assertEquals(10, $actualItem->getSellIn());
         $this->assertEquals(20, $actualItem->getQuality());
     }
 
     public function testItemSulfurasAndBelowMaxQualityAndNotSellIn(): void
     {
-        $item = new Item(Item::NAME_SULFURAS, 0, 20);
+        $item = new Item(SulfurasItem::NAME, 0, 20);
 
         $gildedRose = new GildedRose([$item]);
         $gildedRose->updateQuality();
 
         $actualItem = $gildedRose->getItems()[0];
 
-        $this->assertEquals(Item::NAME_SULFURAS, $actualItem->getName());
+        $this->assertEquals(SulfurasItem::NAME, $actualItem->getName());
         $this->assertEquals(0, $actualItem->getSellIn());
         $this->assertEquals(20, $actualItem->getQuality());
+    }
+
+    public function testMixItems(): void
+    {
+        $items = [
+            new Item(BackstageItem::NAME, 5, 20),
+            new Item(AgedItem::NAME, 5, 40),
+            new Item(SulfurasItem::NAME, 10, 20)
+        ];
+
+        $gildedRose = new GildedRose($items);
+        $gildedRose->updateQuality();
+
+        $backstageItem = $gildedRose->getItems()[0];
+        $this->assertEquals(BackstageItem::NAME, $backstageItem->getName());
+        $this->assertEquals(4, $backstageItem->getSellIn());
+        $this->assertEquals(23, $backstageItem->getQuality());
+
+        $agedItem = $gildedRose->getItems()[1];
+        $this->assertEquals(AgedItem::NAME, $agedItem->getName());
+        $this->assertEquals(4, $agedItem->getSellIn());
+        $this->assertEquals(41, $agedItem->getQuality());
+
+
+        $sulfurasItem = $gildedRose->getItems()[2];
+        $this->assertEquals(SulfurasItem::NAME, $sulfurasItem->getName());
+        $this->assertEquals(10, $sulfurasItem->getSellIn());
+        $this->assertEquals(20, $sulfurasItem->getQuality());
+    }
+
+    public function testMixItemsWithDataFixtures(): void
+    {
+        $items = [
+           $this->fixtureItems['itemBackstage_fixture'],
+           $this->fixtureItems['itemAged_fixture'],
+           $this->fixtureItems['itemSulfuras_fixture'],
+        ];
+
+        $gildedRose = new GildedRose($items);
+        $gildedRose->updateQuality();
+
+        $backstageItem = $gildedRose->getItems()[0];
+        $this->assertEquals(BackstageItem::NAME, $backstageItem->getName());
+        $this->assertEquals(4, $backstageItem->getSellIn());
+        $this->assertEquals(23, $backstageItem->getQuality());
+
+        $agedItem = $gildedRose->getItems()[1];
+        $this->assertEquals(AgedItem::NAME, $agedItem->getName());
+        $this->assertEquals(4, $agedItem->getSellIn());
+        $this->assertEquals(41, $agedItem->getQuality());
+
+
+        $sulfurasItem = $gildedRose->getItems()[2];
+        $this->assertEquals(SulfurasItem::NAME, $sulfurasItem->getName());
+        $this->assertEquals(10, $sulfurasItem->getSellIn());
+        $this->assertEquals(20, $sulfurasItem->getQuality());
     }
 }

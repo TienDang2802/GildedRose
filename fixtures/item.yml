@@ -49,3 +49,21 @@ GildedRose\Model\Item:
             name: '<name()>'
             sellIn: '<randomDigit()>'
             quality: '<randomDigit()>'
+            
+    itemAged_fixture:
+        __construct:
+            name: 'Aged Brie'
+            sellIn: 5
+            quality: 40
+            
+    itemBackstage_fixture:
+        __construct:
+            name: 'Backstage passes to a TAFKAL80ETC concert'
+            sellIn: 5
+            quality: 20
+            
+    itemSulfuras_fixture:
+        __construct:
+            name: 'Sulfuras, Hand of Ragnaros'
+            sellIn: 10
+            quality: 20

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Tests\Fixtures;
 
 use Nelmio\Alice\Loader\NativeLoader;
-use Nelmio\Alice\ObjectSet;
 
 class LoadItemData
 {

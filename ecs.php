@@ -16,7 +16,7 @@ return function (ContainerConfigurator $containerConfigurator): void {
     $parameters = $containerConfigurator->parameters();
 
     $parameters->set(Option::PATHS, [__DIR__ . '/src', __DIR__ . '/public', __DIR__ . '/tests']);
-    $parameters->set(Option::LINE_ENDING, "\r\n");
+    $parameters->set(Option::LINE_ENDING, "\n");
 
     $services = $containerConfigurator->services();
     $services->set(BlankLineBeforeStatementFixer::class)

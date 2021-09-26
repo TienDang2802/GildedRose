@@ -6,11 +6,7 @@ namespace GildedRose\Model;
 
 final class Item implements \Stringable
 {
-    public const NAME_AGED_BRIE = 'Aged Brie';
-
-    public const NAME_BACKSTAGE = 'Backstage passes to a TAFKAL80ETC concert';
-
-    public const NAME_SULFURAS = 'Sulfuras, Hand of Ragnaros';
+    private string $shortName;
 
     /**
      * Constructor property promotion
@@ -19,6 +15,8 @@ final class Item implements \Stringable
      */
     public function __construct(private string $name, private int $sellIn, private int $quality)
     {
+        preg_match('/\b\D\w+\b/i', $name, $result);
+        $this->shortName = trim($result[0]);
     }
 
     public function getName(): string
@@ -31,6 +29,11 @@ final class Item implements \Stringable
         $this->name = $name;
 
         return $this;
+    }
+
+    public function getShortName(): string
+    {
+        return $this->shortName;
     }
 
     public function getSellIn(): int
