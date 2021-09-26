@@ -53,17 +53,35 @@ GildedRose\Model\Item:
     itemAged_fixture:
         __construct:
             name: 'Aged Brie'
-            sellIn: 5
-            quality: 40
+            sellIn: 10
+            quality: 32
+            
+    itemAgedSellInGtZero_fixture:
+        __construct:
+            name: 'Aged Brie'
+            sellIn: -1
+            quality: 8
             
     itemBackstage_fixture:
         __construct:
             name: 'Backstage passes to a TAFKAL80ETC concert'
-            sellIn: 5
-            quality: 20
+            sellIn: 6
+            quality: 22
+            
+    itemBackstageOverMaxQuality_fixture:
+        __construct:
+            name: 'Backstage passes to a TAFKAL80ETC concert'
+            sellIn: 11
+            quality: 102
+            
+    itemBackstageSellInGtZeroAndOverMaxQuality_fixture:
+        __construct:
+            name: 'Backstage passes to a TAFKAL80ETC concert'
+            sellIn: -9
+            quality: 80
             
     itemSulfuras_fixture:
         __construct:
             name: 'Sulfuras, Hand of Ragnaros'
-            sellIn: 10
-            quality: 20
+            sellIn: 8
+            quality: 39

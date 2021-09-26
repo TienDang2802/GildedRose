@@ -60,11 +60,6 @@ final class Item implements \Stringable
         return $this;
     }
 
-    public function hasName(string $name): bool
-    {
-        return $this->name === $name;
-    }
-
     public function increaseQuality(int $quality = 1): self
     {
         $this->quality += $quality;
@@ -91,11 +86,6 @@ final class Item implements \Stringable
         $this->sellIn -= $sellIn;
 
         return $this;
-    }
-
-    public function isSellIn(): bool
-    {
-        return $this->sellIn >= 0;
     }
 
     public function __toString(): string

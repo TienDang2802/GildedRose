@@ -274,6 +274,9 @@ class GildedRoseTest extends AbstractTestCase
            $this->fixtureItems['itemBackstage_fixture'],
            $this->fixtureItems['itemAged_fixture'],
            $this->fixtureItems['itemSulfuras_fixture'],
+           $this->fixtureItems['itemAgedSellInGtZero_fixture'],
+           $this->fixtureItems['itemBackstageOverMaxQuality_fixture'],
+           $this->fixtureItems['itemBackstageSellInGtZeroAndOverMaxQuality_fixture'],
         ];
 
         $gildedRose = new GildedRose($items);
@@ -281,18 +284,33 @@ class GildedRoseTest extends AbstractTestCase
 
         $backstageItem = $gildedRose->getItems()[0];
         $this->assertEquals(BackstageItem::NAME, $backstageItem->getName());
-        $this->assertEquals(4, $backstageItem->getSellIn());
-        $this->assertEquals(23, $backstageItem->getQuality());
+        $this->assertEquals(5, $backstageItem->getSellIn());
+        $this->assertEquals(24, $backstageItem->getQuality());
 
         $agedItem = $gildedRose->getItems()[1];
         $this->assertEquals(AgedItem::NAME, $agedItem->getName());
-        $this->assertEquals(4, $agedItem->getSellIn());
-        $this->assertEquals(41, $agedItem->getQuality());
+        $this->assertEquals(9, $agedItem->getSellIn());
+        $this->assertEquals(33, $agedItem->getQuality());
 
 
         $sulfurasItem = $gildedRose->getItems()[2];
         $this->assertEquals(SulfurasItem::NAME, $sulfurasItem->getName());
-        $this->assertEquals(10, $sulfurasItem->getSellIn());
-        $this->assertEquals(20, $sulfurasItem->getQuality());
+        $this->assertEquals(8, $sulfurasItem->getSellIn());
+        $this->assertEquals(39, $sulfurasItem->getQuality());
+
+        $agedSellInGtZeroItem = $gildedRose->getItems()[3];
+        $this->assertEquals(AgedItem::NAME, $agedSellInGtZeroItem->getName());
+        $this->assertEquals(-2, $agedSellInGtZeroItem->getSellIn());
+        $this->assertEquals(10, $agedSellInGtZeroItem->getQuality());
+
+        $backstageOverMaxQualityItem = $gildedRose->getItems()[4];
+        $this->assertEquals(BackstageItem::NAME, $backstageOverMaxQualityItem->getName());
+        $this->assertEquals(10, $backstageOverMaxQualityItem->getSellIn());
+        $this->assertEquals(102, $backstageOverMaxQualityItem->getQuality());
+
+        $backstageSellInGtZeroAndOverMaxQualityItem = $gildedRose->getItems()[5];
+        $this->assertEquals(BackstageItem::NAME, $backstageSellInGtZeroAndOverMaxQualityItem->getName());
+        $this->assertEquals(-10, $backstageSellInGtZeroAndOverMaxQualityItem->getSellIn());
+        $this->assertEquals(0, $backstageSellInGtZeroAndOverMaxQualityItem->getQuality());
     }
 }
