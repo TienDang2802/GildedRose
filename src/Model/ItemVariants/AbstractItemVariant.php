@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-namespace GildedRose\Model;
+namespace GildedRose\Model\ItemVariants;
+
+use GildedRose\Model\Item;
 
 abstract class AbstractItemVariant
 {

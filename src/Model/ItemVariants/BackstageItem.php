@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace GildedRose\Model\ItemVariants;
 
-use GildedRose\Model\AbstractItemVariant;
 use GildedRose\Model\Item;
 
 final class BackstageItem extends AbstractItemVariant
@@ -13,16 +12,16 @@ final class BackstageItem extends AbstractItemVariant
 
     public function update(): Item
     {
-        if (! $this->hasReachedHighestQuality()) {
+        if (!$this->hasReachedHighestQuality()) {
             $this->item->increaseQuality();
 
             $sellIn = $this->item->getSellIn();
 
-            if ($sellIn < self::RANGE_SELL_IN_BELOW_11 && ! $this->hasReachedHighestQuality()) {
+            if ($sellIn < self::RANGE_SELL_IN_BELOW_11 && !$this->hasReachedHighestQuality()) {
                 $this->item->increaseQuality();
             }
 
-            if ($sellIn < self::RANGE_SELL_IN_BELOW_6 && ! $this->hasReachedHighestQuality()) {
+            if ($sellIn < self::RANGE_SELL_IN_BELOW_6 && !$this->hasReachedHighestQuality()) {
                 $this->item->increaseQuality();
             }
         }

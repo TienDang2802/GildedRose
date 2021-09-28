@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace GildedRose\Model\ItemVariants;
 
-use GildedRose\Model\AbstractItemVariant;
 use GildedRose\Model\Item;
 
 final class SulfurasItem extends AbstractItemVariant
