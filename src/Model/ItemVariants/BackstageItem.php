@@ -13,27 +13,23 @@ final class BackstageItem extends AbstractItemVariant
 
     public function update(): Item
     {
-        $quality = $this->item->getQuality();
-
-        if ($quality < self::MAX_QUALITY) {
-            $quality++;
+        if (! $this->hasReachedHighestQuality()) {
+            $this->item->increaseQuality();
 
             $sellIn = $this->item->getSellIn();
 
-            if ($sellIn < self::RANGE_SELL_IN_BELOW_11 && $quality < self::MAX_QUALITY) {
-                $quality++;
+            if ($sellIn < self::RANGE_SELL_IN_BELOW_11 && ! $this->hasReachedHighestQuality()) {
+                $this->item->increaseQuality();
             }
 
-            if ($sellIn < self::RANGE_SELL_IN_BELOW_6 && $quality < self::MAX_QUALITY) {
-                $quality++;
+            if ($sellIn < self::RANGE_SELL_IN_BELOW_6 && ! $this->hasReachedHighestQuality()) {
+                $this->item->increaseQuality();
             }
-
-            $this->item->setQuality($quality);
         }
 
         $this->item->decreaseSellIn();
 
-        if ($this->isSellInLtZero()) {
+        if ($this->isSellInNegative()) {
             $this->item->clearQuality();
         }
 

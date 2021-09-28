@@ -21,7 +21,7 @@ abstract class AbstractItemVariant
         return $this->item->getQuality() >= self::MAX_QUALITY;
     }
 
-    protected function isSellInLtZero(): bool
+    protected function isSellInNegative(): bool
     {
         return $this->item->getSellIn() < 0;
     }

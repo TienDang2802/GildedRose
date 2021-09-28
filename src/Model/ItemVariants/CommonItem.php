@@ -17,7 +17,7 @@ class CommonItem extends AbstractItemVariant
 
         $this->item->decreaseSellIn();
 
-        if ($this->isSellInLtZero() && $this->item->getQuality() > 0) {
+        if ($this->isSellInNegative() && $this->item->getQuality() > 0) {
             $this->item->decreaseQuality();
         }
 

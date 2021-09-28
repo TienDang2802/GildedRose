@@ -19,7 +19,7 @@ final class AgedItem extends AbstractItemVariant
 
         $this->item->decreaseSellIn();
 
-        if ($this->isSellInLtZero() && !$this->hasReachedHighestQuality()) {
+        if ($this->isSellInNegative() && !$this->hasReachedHighestQuality()) {
             $this->item->increaseQuality();
         }
 
