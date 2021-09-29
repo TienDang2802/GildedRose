@@ -73,7 +73,8 @@ $gildedRose->updateQuality();
 
 <?php
 
-use GildedRose\Model\AbstractItemVariant;
+namespace GildedRose\Model\ItemVariants;
+
 use GildedRose\Model\Item;
 
 /**

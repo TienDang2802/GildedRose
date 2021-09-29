@@ -8,7 +8,7 @@ final class Str
 {
     public static function studly(string $value): string
     {
-        $value = ucwords(str_replace(['-', '_'], ' ', $value));
+        $value = ucwords(preg_replace('/[^a-zA-Z0-9]/s', ' ', $value));
 
         return str_replace(' ', '', $value);
     }
